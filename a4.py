@@ -10,19 +10,46 @@ class TTTBoard:
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
 
-    def __init__(self, player_one = "X", player_two = "O",  ):
+    def __init__(self):
+        
+        """initia;ize a 3x3 tic tac toe board with 9 '*'"""
         self.brd = ["*"] * 9
-        self.player_one = player_one
-        self.player_two = player_two
 
     def __str__(self):
+        """return a string """
         return (
              f"{self.brd[0]} {self.brd[1]} {self.brd[2]}\n"
             f"{self.brd[3]} {self.brd[4]} {self.brd[5]}\n"
             f"{self.brd[6]} {self.brd[7]} {self.brd[8]}" 
             )
+    
+    def make_move(self, player, pos):
+        """places a move for the player at position 
+        
+        Args:
+        player - string "X" or "O"
+        pos- integer 0-8 represeting board position
 
-   
+        Returns: 
+        True if a move was made, False otherwise
+        """
+        if 0 <= pos <= 8 and self.brd[pos] == '*':
+            self.brd[pos] = player
+            return True
+        return False
+    
+    def has_won(self, player):
+        """check if the player has won
+        Args: 
+            player - string of either "X" or "O"
+
+        Return: 
+            True if the has won, False otherwise    
+        """
+    pass
+
+    def game_over(self):
+        return self.has_won("X") or self.has_won("O") or '*' not in self.brd
 
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
@@ -73,6 +100,7 @@ if __name__ == "__main__":
     # properly.
     brd = TTTBoard()
     print(brd)
+    print()
     brd.make_move("X", 8)
     brd.make_move("O", 7)
     print(brd)
