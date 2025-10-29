@@ -10,8 +10,19 @@ class TTTBoard:
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
 
-    pass
+    def __init__(self, player_one = "X", player_two = "O",  ):
+        self.brd = ["*"] * 9
+        self.player_one = player_one
+        self.player_two = player_two
 
+    def __str__(self):
+        return (
+             f"{self.brd[0]} {self.brd[1]} {self.brd[2]}\n"
+            f"{self.brd[3]} {self.brd[4]} {self.brd[5]}\n"
+            f"{self.brd[6]} {self.brd[7]} {self.brd[8]}" 
+            )
+
+   
 
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
@@ -61,9 +72,10 @@ if __name__ == "__main__":
     # need to write some more tests to make sure that your TTTBoard class is behaving
     # properly.
     brd = TTTBoard()
+    print(brd)
     brd.make_move("X", 8)
     brd.make_move("O", 7)
-
+    print(brd)
     assert brd.game_over() == False
 
     brd.make_move("X", 5)
